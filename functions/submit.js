@@ -1,5 +1,3 @@
-const SECRET_KEY = context.env.CF_SECRET_KEY;
-
 /**
  * POST /api/submit
  */
@@ -11,7 +9,7 @@ export async function onRequestPost(context) {
         const ip = request.headers.get('CF-Connecting-IP');
 
         let formData = new FormData();
-        formData.append('secret', SECRET_KEY);
+        formData.append('secret', context.env.CF_SECRET_KEY);
         formData.append('response', token);
         formData.append('remoteip', ip);
 
