@@ -1,4 +1,4 @@
-const SECRET_KEY = env.CF_SECRET_KEY;
+const SECRET_KEY = context.env.CF_SECRET_KEY;
 
 /**
  * POST /api/submit
