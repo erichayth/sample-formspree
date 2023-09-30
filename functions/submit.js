@@ -1,4 +1,4 @@
-const SECRET_KEY = process.env.CF_SECRET_KEY;
+const SECRET_KEY = CF_SECRET_KEY;
 
 /**
  * POST /api/submit
