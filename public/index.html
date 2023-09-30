@@ -2,10 +2,12 @@
   <head>
     <meta charset="utf8" />
     <title>Form Demo</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
   </head>
   <body>
     <form method="POST" action="/submit">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAK55SY2qnXmTn6N" data-callback="javascriptCallback"></div>
       <div class="input">
         <label for="name">Full Name</label>
         <input id="name" name="name" type="text" />
