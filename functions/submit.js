@@ -33,7 +33,7 @@ export async function onRequestPost(context) {
             }
         }
 
-        let pretty = JSON.stringify(output, null, 2);
+        let pretty = JSON.stringify(outcome, null, 2);
         return new Response(pretty, {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
