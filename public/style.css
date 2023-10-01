@@ -1,0 +1,31 @@
+body {
+    background-color: #f0f8ff;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  select {
+    border: 2px solid #87cefa;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  label {
+    color: #87cefa;
+    font-size: 18px;
+  }
+  
+  input[type="submit"] {
+    background-color: #87cefa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #6495ed;
+  }
