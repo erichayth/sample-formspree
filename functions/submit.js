@@ -1,5 +1,3 @@
-// Import the crypto module (built into Cloudflare Workers)
-import { crypto } from 'crypto';
 
 /**
  * Generate a UUID from an email address using SHA-256.
