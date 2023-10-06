@@ -33,7 +33,6 @@ export async function onRequestPost(context) {
                 }
               }
             }
-            console.log('Bound Values:', [name, email, referers, moviesString]);
             // Prepare SQL statement to insert data
             const sql = `
               INSERT INTO entries (name, email, referers, movies)
@@ -48,7 +47,7 @@ export async function onRequestPost(context) {
 
             // Execute SQL statement
             const { success } = await context.env.FORMSPREE.prepare(sql)
-                .bind([name, email, referers, moviesString])
+                .bind(name, email, referers, moviesString)
                 .run()
             console.log('Success:', success);
             return new Response('Submission successful', {
