@@ -50,7 +50,7 @@ export async function onRequestPost(context) {
             const { success } = await context.env.FORMSPREE.prepare(sql)
                 .bind([name, email, referers, moviesString])
                 .run()
-          
+            console.log('Success:', success);
             return new Response('Submission successful', {
               headers: {
                 'Content-Type': 'text/plain;charset=utf-8',
