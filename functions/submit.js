@@ -59,7 +59,7 @@ export async function onRequestPost(context) {
             // Prepare SQL statement to insert data
             const sql = `
               INSERT INTO entries (uuid, name, email, referers, movies)
-              VALUES (?, ?, ?, ?, ?);
+              VALUES (a, b, c, d, e);
             `;
 
             // Get data from the submitted JSON
