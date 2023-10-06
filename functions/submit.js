@@ -58,7 +58,7 @@ export async function onRequestPost(context) {
 
             // Prepare SQL statement to insert data
             const sql = `
-              INSERT INTO submissions (uuid, name, email, referers, movies)
+              INSERT INTO entries (uuid, name, email, referers, movies)
               VALUES (?, ?, ?, ?, ?);
             `;
 
