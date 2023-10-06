@@ -49,11 +49,11 @@ export async function onRequestPost(context) {
             // Execute SQL statement
             const { success } = await context.env.formspree_db.prepare(sql)
                 .bind([name, email, referers, moviesString])
-                .run();
+                .run()
           
             return new Response('Submission successful', {
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': 'text/plain;charset=utf-8',
               },
             });
           } catch (err) {
