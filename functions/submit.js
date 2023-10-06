@@ -33,7 +33,7 @@ export async function onRequestPost(context) {
                 }
               }
             }
-
+            console.log('Output:', output);
             // Prepare SQL statement to insert data
             const sql = `
               INSERT INTO entries (name, email, referers, movies)
