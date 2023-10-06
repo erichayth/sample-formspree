@@ -33,13 +33,13 @@ export async function onRequestPost(context) {
                 }
               }
             }
-            console.log('Output:', output);
+            console.log('Bound Values:', [name, email, referers, moviesString]);
             // Prepare SQL statement to insert data
             const sql = `
               INSERT INTO entries (name, email, referers, movies)
               VALUES (?, ?, ?, ?);
             `;
-
+            
             // Get data from the submitted JSON
             const { name, email, referers, movies } = output;
 
