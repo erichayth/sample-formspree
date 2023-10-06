@@ -20,26 +20,31 @@ export async function onRequestPost(context) {
         if (!outcome.success) {
             throw new Error('Invalid request');
         }
-
-        // Convert FormData to JSON
-        // NOTE: Allows multiple values per key
-        let output = {};
-        for (let [key, value] of body) {
-            let tmp = output[key];
-            if (tmp === undefined) {
-                output[key] = value;
-            } else {
-                output[key] = [].concat(tmp, value);
+        try {
+            // Convert FormData to JSON
+            // NOTE: Allows multiple values per key
+            let output = {};
+            for (let [key, value] of body) {
+              if (key !== 'cf-turnstile-response') {
+                let tmp = output[key];
+                if (tmp === undefined) {
+                  output[key] = value;
+                } else {
+                  output[key] = [].concat(tmp, value);
+                }
+              }
             }
-        }
-
-        let pretty = JSON.stringify(output, null, 2);
-        return new Response(pretty, {
-            headers: {
+          
+            let pretty = JSON.stringify(output, null, 2);
+            return new Response(pretty, {
+              headers: {
                 'Content-Type': 'application/json;charset=utf-8',
-            },
-        });
-    } catch (err) {
-        return new Response('Error parsing JSON content', { status: 400 });
-    }
-}
+              },
+            });
+          } catch (err) {
+            return new Response('Error parsing JSON content', { status: 400 });
+          }
+        }
+        catch (err) {
+            return new Response(err.message || err.toString(), { status: 500 });
+        }}
