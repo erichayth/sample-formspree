@@ -47,7 +47,7 @@ export async function onRequestPost(context) {
             const moviesString = JSON.stringify(movies);
 
             // Execute SQL statement
-            const { success } = await context.env.formspree_db.prepare(sql)
+            const { success } = await context.env.FORMSPREE.prepare(sql)
                 .bind([name, email, referers, moviesString])
                 .run()
           
