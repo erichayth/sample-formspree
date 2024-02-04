@@ -33,10 +33,11 @@ export async function onRequestPost(context) {
                 }
               }
             }
+            output['timestamp'] = new Date().toISOString(); // Add a timestamp
             // Prepare SQL statement to insert data
             const sql = `
-              INSERT INTO entries (name, email, referers, movies)
-              VALUES (?, ?, ?, ?);
+              INSERT INTO entries (name, email, referers, movies, remoteip, timestamp)
+              VALUES (?, ?, ?, ?, ?, ?);
             `;
             
             // Get data from the submitted JSON
@@ -52,7 +53,7 @@ export async function onRequestPost(context) {
 
             // Execute SQL statement
             const { success } = await context.env.FORMSPREE.prepare(sql)
-                .bind(name, email, referers, moviesString)
+                .bind(name, email, referers, moviesString, ip, timestamp)
                 .run()
             console.log('Success:', success);
             return new Response('Submission successful', {
