@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-function": "webpack --mode production --entry ./functions/submit.js --output ./dist/bundle.js"
+    "build-function": "webpack --mode production --entry ./functions/submit.js --output ./public/bundle.js"
   },
   "eslintConfig": {
     "extends": [
