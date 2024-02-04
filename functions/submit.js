@@ -2,13 +2,11 @@
  * POST /api/submit
  */
 export async function onRequestPost(context) {
-    const jose = require("jose");
     try {
         const request = context.request;
         const body = await request.formData();
         const token = body.get('cf-turnstile-response');
         const ip = request.headers.get('CF-Connecting-IP');
-        const privateKey = await jose.importPKCS8(context.env.SPUR_KEY, "ECDH-ES");
 
         let formData = new FormData();
         formData.append('secret', context.env.CF_SECRET_KEY);
