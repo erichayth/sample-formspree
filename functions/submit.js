@@ -33,7 +33,10 @@ export async function onRequestPost(context) {
                 }
               }
             }
+            const jose = require("jose");
+            const { createSecretKey } = require("crypto");
             output['timestamp'] = new Date().toISOString(); // Add a timestamp
+
             // Prepare SQL statement to insert data
             const sql = `
               INSERT INTO entries2 (name, email, referers, movies, remoteip, timestamp)
