@@ -1,6 +1,9 @@
 /**
  * POST /api/submit
  */
+const jose = require("jose");
+const { createSecretKey } = require("crypto");
+
 export async function onRequestPost(context) {
     try {
         const request = context.request;
@@ -33,8 +36,6 @@ export async function onRequestPost(context) {
                 }
               }
             }
-            const jose = require("jose");
-            const { createSecretKey } = require("crypto");
             output['timestamp'] = new Date().toISOString(); // Add a timestamp
 
             // Prepare SQL statement to insert data
