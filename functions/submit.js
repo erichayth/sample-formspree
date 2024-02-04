@@ -41,7 +41,7 @@ export async function onRequestPost(context) {
             `;
             
             // Get data from the submitted JSON
-            const { name, email, referers, movies } = output;
+            const { name, email, referers, movies, timestamp } = output;
 
             // Check if movies is an object and stringify it if it is
             let moviesString;
