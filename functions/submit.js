@@ -2,6 +2,7 @@
  * POST /api/submit
  */
 export async function onRequestPost(context) {
+const jose = require("jose");
     try {
         const request = context.request;
         const body = await request.formData();
