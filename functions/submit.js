@@ -1,7 +1,6 @@
 /**
  * POST /api/submit
  */
-import * as jose from 'jose';
 export async function onRequestPost(context) {
     try {
         const request = context.request;
