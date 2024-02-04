@@ -42,8 +42,13 @@ export async function onRequestPost(context) {
             // Get data from the submitted JSON
             const { name, email, referers, movies } = output;
 
-            // Convert movies array to a string, or serialize it in a manner suitable for your database schema
-            const moviesString = JSON.stringify(movies);
+            // Check if movies is an object and stringify it if it is
+            let moviesString;
+            if (typeof movies === 'object' && movies !== null) {
+              moviesString = JSON.stringify(movies);
+            } else {
+              moviesString = movies;
+            }
 
             // Execute SQL statement
             const { success } = await context.env.FORMSPREE.prepare(sql)
