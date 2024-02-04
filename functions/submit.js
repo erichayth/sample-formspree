@@ -36,7 +36,7 @@ export async function onRequestPost(context) {
             output['timestamp'] = new Date().toISOString(); // Add a timestamp
             // Prepare SQL statement to insert data
             const sql = `
-              INSERT INTO entries (name, email, referers, movies, remoteip, timestamp)
+              INSERT INTO entries2 (name, email, referers, movies, remoteip, timestamp)
               VALUES (?, ?, ?, ?, ?, ?);
             `;
             
