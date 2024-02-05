@@ -16,6 +16,7 @@ export async function onRequestPost(context) {
         const decoder = new TextDecoder();
       
         // decrypt the bundle
+        console.log(monocole_data)
         const decryptResult = await jose.compactDecrypt(monocole_data, privateKey);
       
         // decode the plaintext Buffer and parse back to JSON
