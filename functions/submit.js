@@ -2,7 +2,6 @@
  * POST /api/submit
  */
 const jose = require("jose");
-const { createSecretKey } = require("crypto");
 
 export async function onRequestPost(context) {
     try {
@@ -10,6 +9,19 @@ export async function onRequestPost(context) {
         const body = await request.formData();
         const token = body.get('cf-turnstile-response');
         const ip = request.headers.get('CF-Connecting-IP');
+        const monocole_data = body.get('monocole');
+        const privateKey = await jose.importPKCS8(context.env.SPUR_KEY, "ECDH-ES");
+
+        // decrypted plaintext is a Buffer and will need decoding
+        const decoder = new TextDecoder();
+      
+        // decrypt the bundle
+        const decryptResult = await jose.compactDecrypt(monocole_data, privateKey);
+      
+        // decode the plaintext Buffer and parse back to JSON
+        const threatBundleJson = JSON.parse(decoder.decode(decryptResult.plaintext));
+      
+        console.log(threatBundleJson);
 
         let formData = new FormData();
         formData.append('secret', context.env.CF_SECRET_KEY);
