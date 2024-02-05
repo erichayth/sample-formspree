@@ -16,13 +16,13 @@ export async function onRequestPost(context) {
         const decoder = new TextDecoder();
       
         // decrypt the bundle
-        console.log(monocle_data)
         const decryptResult = await jose.compactDecrypt(monocle_data, privateKey);
       
         // decode the plaintext Buffer and parse back to JSON
         const threatBundleJson = JSON.parse(decoder.decode(decryptResult.plaintext));
       
-        console.log(threatBundleJson);
+        // Extract data from the threatBundleJson JSON data
+        const { vpn, proxied, anon } = threatBundleJson;
 
         let formData = new FormData();
         formData.append('secret', context.env.CF_SECRET_KEY);
@@ -53,8 +53,8 @@ export async function onRequestPost(context) {
 
             // Prepare SQL statement to insert data
             const sql = `
-              INSERT INTO entries2 (name, email, referers, movies, remoteip, timestamp)
-              VALUES (?, ?, ?, ?, ?, ?);
+              INSERT INTO table1 (name, email, referers, movies, remoteip, timestamp, spur_vpn, spur_proxied, spur_anon)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
             `;
             
             // Get data from the submitted JSON
@@ -70,7 +70,7 @@ export async function onRequestPost(context) {
 
             // Execute SQL statement
             const { success } = await context.env.FORMSPREE.prepare(sql)
-                .bind(name, email, referers, moviesString, ip, timestamp)
+                .bind(name, email, referers, moviesString, ip, timestamp, vpn, proxied, anon)
                 .run()
             console.log('Success:', success);
             return new Response('Submission successful', {
