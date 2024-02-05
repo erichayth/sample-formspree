@@ -53,7 +53,7 @@ export async function onRequestPost(context) {
 
             // Prepare SQL statement to insert data
             const sql = `
-              INSERT INTO table1 (name, email, referers, movies, remoteip, timestamp, spur_vpn, spur_proxied, spur_anon)
+              INSERT INTO table2 (name, email, referers, movies, remoteip, timestamp, spur_vpn, spur_proxied, spur_anon)
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
             `;
             
