@@ -1,6 +1,9 @@
 /**
  * POST /api/submit
  */
+const jose = require("jose");
+const { createSecretKey } = require("crypto");
+
 export async function onRequestPost(context) {
     try {
         const request = context.request;
