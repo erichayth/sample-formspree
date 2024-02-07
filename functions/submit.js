@@ -24,6 +24,11 @@ export async function onRequestPost(context) {
         // Extract data from the threatBundleJson JSON data
         const { vpn, proxied, anon } = threatBundleJson;
 
+        // Convert boolean values to "1" or "0"
+        const vpnValue = vpn ? 1 : 0;
+        const proxiedValue = proxied ? 1 : 0;
+        const anonValue = anon ? 1 : 0;
+
         let formData = new FormData();
         formData.append('secret', context.env.CF_SECRET_KEY);
         formData.append('response', token);
@@ -70,7 +75,7 @@ export async function onRequestPost(context) {
 
             // Execute SQL statement
             const { success } = await context.env.FORMSPREE.prepare(sql)
-                .bind(name, email, referers, moviesString, ip, timestamp, vpn, proxied, anon)
+                .bind(name, email, referers, moviesString, ip, timestamp, vpnValue, proxiedValue, anonValue)
                 .run()
             console.log('Success:', success);
             return new Response('Submission successful', {
