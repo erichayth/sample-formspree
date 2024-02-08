@@ -78,6 +78,12 @@ export async function onRequestPost(context) {
                 .bind(name, email, referers, moviesString, ip, timestamp, vpnValue, proxiedValue, anonValue)
                 .run()
             console.log('Success:', success);
+
+            // Check if vpnValue, proxiedValue, or anonValue is "1"
+            if (vpnValue === 1 || proxiedValue === 1 || anonValue === 1) {
+            return new Response('Forbidden', { status: 403 });
+            }
+            // Return a successful response
             return new Response('Submission successful', {
               headers: {
                 'Content-Type': 'text/plain;charset=utf-8',
